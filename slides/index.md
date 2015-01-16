@@ -66,7 +66,7 @@ multicast:
 
 ### Message Oriented Middleware
 
-the two message distribution patterns in common use:
+two message middleware patterns are in common use:
 
 - queues
     - unicast, and buffered
@@ -77,6 +77,25 @@ Note:
 most message oriented middleware provides different modes of operation for both,
 or a combination of the two
 
+the unbuffered nature of publish / subscribe is necessary for scale
+
+- -
+
+### Topic Filtered
+
+messages have a topic
+
+subscribers will only get messages on the topic(s) they have subscribed to
+
+subpub's topic is called the `MESSAGE-TYPE`
+
+Note:
+Content filtered - this message oriented middleware filtering is aware of
+the format and schema of the messages themselves.
+
+Topic filtered - this filtering mechanic uses only message metadata to make
+decisions on where to send messages. the messages themselves are binary-opaque
+
 - - -
 
 ## Asynchronous
@@ -85,29 +104,30 @@ or a combination of the two
 
 synchronicity: an API concept
 
-*synchronous*
+*synchronous: requests have reponses*
 
-*asynchronous*
-
-- send a letter using the post office
+*asynchronous: send messages, then call me maybe*
 
 Note:
-synchronicity is an API concept, which is characterized by responses to
-requests. in the eyes of a client of synchronous api, one response always
-comes after one request.
+synchronicity is an API concept, which is characterized by expectations around
+responses to requests. in the eyes of a client of synchronous api, one
+response always comes after one request.
 
-clients of a synchronous API are able to assume that a response will arrive soon.
+clients of a synchronous API are asked to assume that a response will arrive soon.
 
 in an asynchronous api, there are no requests and responses, only transmissions
+and receptions, which may occur unprompted
+
+This is different from concepts around the semantics of trasport like
+full-duplex and half-duplex; and this is also different from the concepts
+of concurrency or parallelism
 
 - -
 
 | synchronous     | asynchronous |
 |---              |---           |
-| telephone calls | email   |
+| telephone calls | email |
 | TCP | UDP |
-| http |  |
-|   	|   	|
 
 - - -
 
@@ -220,3 +240,55 @@ DELIVERY-ATTEMPT-ID=00000cf5-67fc-5fd5-2875-37d1b13142e1
 
 Note:
 *Line breaks added for clarity*
+
+- - -
+
+## Functionally Testing a SubPub Integration
+
+Note:
+
+This advice should apply for ANY message oriented middleware integration
+
+- -
+
+for publishers:
+- know what happens when your app can't contact SubPub
+- know how you will change any environment specific connection parameters for publication
+- know how many message you intend to publish (rate, and volume in bytes / second)
+- know if those messages are sent in batches, or spikes
+
+Note:
+
+for the first point, "what happens" may include behavior not just of your app,
+but other apps that will receive your messages.
+
+Of course, the apps that receive your messages are ultimately responsible for
+knowing their behavior if they don't get messages.
+
+- -
+
+for subscribers:
+- know what happens if your app receives more than one copy of the exact same message
+- know how you will change any environment specific connection parameters for publication
+- know how and when your app creates a subscription, and what happens if it is unable to
+- know what happens if your app receives messages out of order
+
+Note:
+
+many subscribing applications make a subscription creation request at startup.
+this is the simplest and most reliable technique, however, as your app is
+starting up, the subscription request may fail, or generate an error.
+
+it's important to understand how your app behaves if that were to happen
+
+- -
+
+for publishers AND subscribers:
+
+- don't make message publication and receipt the only way to access your app's data
+
+Note:
+
+Just like when you use the post office to mail an important document, know
+what your options are if the recipient doesn't get it. Can you call them
+directly? Or is it really important that they receive it?
