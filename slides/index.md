@@ -36,7 +36,7 @@ Take these topics in order in the next few slides
 
 - -
 
-### Message Addressing Topologies
+### Message Addressing
 
 - unicast
     - from one address to only one other; point to point
@@ -66,7 +66,7 @@ multicast:
 
 ### Message Oriented Middleware
 
-two message middleware patterns are in common use:
+two message middleware patterns are commonly used:
 
 - queues
     - unicast, and buffered
@@ -74,6 +74,7 @@ two message middleware patterns are in common use:
     - multicast, and unbuffered
 
 Note:
+
 most message oriented middleware provides different modes of operation for both,
 or a combination of the two
 
@@ -138,6 +139,16 @@ of concurrency or parallelism
 Messages into SubPub use standard HTML form encoding the same as is specified by the [w3c](http://www.w3.org/TR/html401/interact/forms.html), used to submit forms all over the web.
 
 Note:
+message oriented middleware has been around for a long, long time,
+but the best solutions are traditionally closed source, or use a proprietary
+protocol
+
+on the other extreme, basically every piece of software that connects to a
+network has a http client library, that can send a HTML 4 form post
+
+SubPub marries the AMQP messaging protocol with the HTML 4 form post
+specification
+
 this spec doesn't have a concept of encoding (UTF-8, ISO, etc.)
 lower ASCII, printable characters work as is, but how to send other text
 isn't specified.
