@@ -5,23 +5,109 @@
 
 - - -
 
+## SubPub Is...
+
 - Publish-Subscribe, Topic Filtered Messaging
 - Asynchronous
 - Over HTTP
 
 Note:
+Publish-Subscribe, Topic Filtered Messaging is an enterprise integration design
+pattern
+
+A synchronicity is an API paradigm
+
+HTTP is an application level protocol in computer networks
+
 Take these topics in order in the next few slides
 
 - - -
 
-## Publish-Subscribe
+## Publish-Subscribe, Topic Filtered Messaging
 
 - -
 
-- messages connect software
-    - web browser to web server
-    - email client to email client
-- unicast (point to pint)
+### messages connect software 
+
+- web browser to web server
+- email client to email client
+- RESTful client to RESTful web service
+- pipes between processes in a [POSIX](https://en.wikipedia.org/wiki/Unix_shell) compliant shell
+
+- -
+
+### Message Addressing Topologies
+
+- unicast
+    - from one address to only one other; point to point
+- broadcast
+    - from one to everyone, everywhere
+- multicast
+    - from one to a group, but not everyone
+
+Note:
+"unicast", "broadcast", and "multicast" are networking-specific terms,
+but these concepts are applicable to other computing domains
+
+unicast:
+
+- send an email from `alice@pearson.com` to `bob@pearson.com`
+
+broadcast:
+
+- the 9:00 news on network TV
+
+multicast:
+
+- send an email to a mailing list (using a [LISTSERV](https://en.wikipedia.org/wiki/Electronic_mailing_list))
+- publish a SubPub message
+
+- -
+
+### Message Oriented Middleware
+
+the two message distribution patterns in common use:
+
+- queues
+    - unicast, and buffered
+- publish / subscribe
+    - multicast, and unbuffered
+
+Note:
+most message oriented middleware provides different modes of operation for both,
+or a combination of the two
+
+- - -
+
+## Asynchronous
+
+- -
+
+synchronicity: an API concept
+
+*synchronous*
+
+*asynchronous*
+
+- send a letter using the post office
+
+Note:
+synchronicity is an API concept, which is characterized by responses to
+requests. in the eyes of a client of synchronous api, one response always
+comes after one request.
+
+clients of a synchronous API are able to assume that a response will arrive soon.
+
+in an asynchronous api, there are no requests and responses, only transmissions
+
+- -
+
+| synchronous     | asynchronous |
+|---              |---           |
+| telephone calls | email   |
+| TCP | UDP |
+| http |  |
+|   	|   	|
 
 - - -
 
@@ -29,9 +115,12 @@ Take these topics in order in the next few slides
 
 - -
 
-Messages into SubPub use standard HTML form encoding, the same
-as is specified by the [w3c](http://www.w3.org/TR/html401/interact/forms.html),
-used to submit forms all over the web.
+Messages into SubPub use standard HTML form encoding the same as is specified by the [w3c](http://www.w3.org/TR/html401/interact/forms.html), used to submit forms all over the web.
+
+Note:
+this spec doesn't have a concept of encoding (UTF-8, ISO, etc.)
+lower ASCII, printable characters work as is, but how to send other text
+isn't specified.
 
 - -
 
