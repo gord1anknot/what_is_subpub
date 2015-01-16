@@ -106,7 +106,7 @@ synchronicity: an API concept
 
 *synchronous: requests have reponses*
 
-*asynchronous: send messages, then call me maybe*
+*asynchronous: send messages; then, call me maybe*
 
 Note:
 synchronicity is an API concept, which is characterized by expectations around
@@ -251,7 +251,8 @@ This advice should apply for ANY message oriented middleware integration
 
 - -
 
-for publishers:
+*publishers:*
+
 - know what happens when your app can't contact SubPub
 - know how you will change any environment specific connection parameters for publication
 - know how many message you intend to publish (rate, and volume in bytes / second)
@@ -267,7 +268,8 @@ knowing their behavior if they don't get messages.
 
 - -
 
-for subscribers:
+*subscribers:*
+
 - know what happens if your app receives more than one copy of the exact same message
 - know how you will change any environment specific connection parameters for publication
 - know how and when your app creates a subscription, and what happens if it is unable to
@@ -283,7 +285,7 @@ it's important to understand how your app behaves if that were to happen
 
 - -
 
-for publishers AND subscribers:
+*publishers AND subscribers:*
 
 - don't make message publication and receipt the only way to access your app's data
 
