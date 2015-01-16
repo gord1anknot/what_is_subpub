@@ -1,0 +1,11 @@
+{
+  "generator-reveal": {
+    "presentationTitle": "What Is SubPub?",
+    "packageVersion": "0.1.0",
+    "revealTheme": "solarized",
+    "useSass": false,
+    "deployToGithubPages": true,
+    "githubUsername": "gord1anknot",
+    "githubRepository": "what_is_subpub"
+  }
+}
