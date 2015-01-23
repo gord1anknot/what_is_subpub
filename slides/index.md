@@ -3,6 +3,9 @@
 
 ## Brad Rowe
 
+To see presentation notes, press the `s` key on
+your keyboard.
+
 - - -
 
 ## SubPub Is...
@@ -19,7 +22,7 @@ A synchronicity is an API paradigm
 
 HTTP is an application level protocol in computer networks
 
-Take these topics in order in the next few slides
+We'll take these topics in order in the next few slides
 
 - - -
 
@@ -105,7 +108,7 @@ decisions on where to send messages. the messages themselves are binary-opaque
 
 synchronicity: an API concept
 
-*synchronous: requests have reponses*
+*synchronous: requests have responses*
 
 *asynchronous: send messages; then, call me maybe*
 
@@ -272,10 +275,10 @@ This advice should apply for ANY message oriented middleware integration
 Note:
 
 for the first point, "what happens" may include behavior not just of your app,
-but other apps that will receive your messages.
-
-Of course, the apps that receive your messages are ultimately responsible for
-knowing their behavior if they don't get messages.
+but other apps that will receive your messages. Of course, your responsibilities
+when testing always depend on what you've promised in your API's contract. The
+apps that receive your messages are ultimately responsible for understanding their
+own behavior if they don't get messages.
 
 - -
 
@@ -288,11 +291,17 @@ knowing their behavior if they don't get messages.
 
 Note:
 
+Receiving more than one copy of the same message is always possible in a cloud
+application. It is mathematically impossible to guarantee once and only once
+without assuming that everything always works perfectly. Read more about why
+that is
+[here](http://stackoverflow.com/questions/416551/why-is-exactly-once-semantics-infeasible).
+
 many subscribing applications make a subscription creation request at startup.
 this is the simplest and most reliable technique, however, as your app is
 starting up, the subscription request may fail, or generate an error.
 
-it's important to understand how your app behaves if that were to happen
+It's important to understand how your app behaves if that were to happen.
 
 - -
 
@@ -304,4 +313,4 @@ Note:
 
 Just like when you use the post office to mail an important document, know
 what your options are if the recipient doesn't get it. Can you call them
-directly? Or is it really important that they receive it?
+directly? Or was it really important that they receive it in the first place?
